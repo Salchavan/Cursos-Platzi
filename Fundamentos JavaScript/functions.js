@@ -3,38 +3,38 @@
 return na + nb; //codigo
 }
 
-// usar variables como argumentos de otra => callback
-function a () {}
-function b (a) {}
+// usar funciones como argumentos de otra => callback
+function a (){}
+function b (a){}
 b(a)
 
 // crear variables dentro de otras y retornarlas
-function aa () {
-    function a () {}
-    return a()
+function aa (){
+    function a (){}
+    return a();
 }
 
 // asignar funciones a variables => expresion de funcion 
-const a = function () {}
+const a = function (){}
 
 // propiedades y metodos
-function a () {}
-const obj = {}
-a.call(obj)
+function a (){}
+const obj = {};
+a.call(obj);
 
 // anidar funciones => nester functions
-function a () {
-    function b () {
-        function c () {}
+function a (){
+    function b (){
+        function c (){}
     } c()
     b()
 } a()
 
-// funciones dentro de onjetos
+// funciones dentro de objetos
 const rocket = {
     name: "R12",
-    launcheMessage: function launcheMessage () {
-        console.log("launching")
+    launcheMessage: function launcheMessage (){
+        console.log("launching");
     }
 }
 rocket.launcheMessage()
@@ -50,13 +50,13 @@ rocket.launcheMessage()
 */
 
 // funcion pura
-function a (a, b) {
+function a (a, b){
     return a + b;
 }
 
 // funcion inpura
-function a (a, b) {
-    console.log("asdd")
+function a (a, b){
+    console.log("asdd");
     return a + b;
 }
 
@@ -67,18 +67,56 @@ const a = (a, b) => {
 //  lexical binding
 const a = {
     name: "tio ben",
-    message: function (message) {
-        console.log(`${this.name} says: ${message}`)
+    message: function (message){
+        console.log(`${this.name} says: ${message}`);
     },
     messageArroy:  (message) => {
-        console.log(`${this.name} says: ${message}`)
+        console.log(`${this.name} says: ${message}`);
     }
 }
 
 // contexto de ejecusion y scope chain
 
 const global = 1
-function a () {
-    const local = 2
-
+function a (){
+    const local = 2;
 }
+
+// closure
+function outerFunction(){
+    let outerVariable = "A";
+    function innterFunction (){
+        console.log(outerVariable);
+    }
+    return innterFunction()
+}
+const closureExample = outerFunction()
+closureExample()
+
+function createCounter(){
+    let count = 0;
+    return function(){
+        count++;
+        console.log(count)
+    }
+}
+
+const counterA = createCounter()
+counterA()
+counterA()
+
+const counterB = createCounter()
+counterB()
+
+function outer(){
+    let message = "Hello, "
+    function inner(name){
+        console.log(message + name)
+    }
+    return inner()
+}
+const closureA = outer()
+const closureB = outer()
+
+closureA("Pedro")
+closureB("Juan")
